@@ -1,0 +1,19 @@
+link#site-css(rel='stylesheet',href='style.css',type='text/css',media='all')
+h1#sitename
+  | Welcome to
+  span The Grapevine
+div#register
+  form(action='http://danu2.it.nuigalway.ie:8777/register',method='post')
+    label.input(for='email') Email address
+    input#email(type='email',name='email',maxlength='40')
+    br
+    label.input(for='username') User name
+    input#username(type='text',name='username',maxlength='20')
+    br
+    label.input(for='fullname') Full name
+    input#fullname(type='text',name='fullname',maxlength='40')
+    br
+    label.input(for='password') Password
+    input#password(type='password',name='password',maxlength='30')
+    br
+    input(type='submit',value='Submit')
