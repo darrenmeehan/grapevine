@@ -8,4 +8,6 @@ HIGH PRIORITY
 
 MEDMIUM PRIORITY
 
+- Begin sharing? - Connor
+
 LOW PRIORITY
