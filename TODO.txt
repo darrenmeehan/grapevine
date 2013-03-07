@@ -1,0 +1,11 @@
+TODO
+
+HIGH PRIORITY
+
+- allow users to enter username or email when loggin in
+- 
+
+
+MEDMIUM PRIORITY
+
+LOW PRIORITY
