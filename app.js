@@ -64,8 +64,8 @@ app.get('/list', function (req, res) {
 });
 
 app.get('/login', function (req, res) {
-  console.log("Calling Login"); 
-  var submitForm = fs.readFileSync('form.html'); 
+  console.log("Calling /login"); 
+  var submitForm = fs.readFileSync('login.html'); 
   //res.writeHead(200, {'Content-type': 'text/html'});
   res.end(submitForm);
 });

@@ -1,4 +1,4 @@
-exports.LoginUser = function (res, req) 
+exports.LoginUser = function (usernameForm, passwordForm, res, req) 
 {
 
 var express = require('express')
@@ -16,20 +16,31 @@ var connection = mysql.createConnection(
   database : 'mydb1155',
   }
   );
- 
-var queryString = 'SELECT username,password FROM USERS WHERE username = ' + ' "user.usernameForm" AND ' + ' password = ' + ' "user.passwordform" ' ;
 
-connection.query(queryString, function(err, rows, fields) {
+var sql    = 'SELECT username, password FROM USERS WHERE username = ' + connection.escape(usernameForm) + 'AND password = ' + connection.escape(passwordForm);
+
+
+connection.query(sql, function(err, rows, fields) {
   if (err) throw err;
 
-  if (rows[0] = null ) 
+  console.log('rows[0] output: ' ,rows[0]);
+  console.log('rows output :', rows);
+  //if (rows[0] == null ) 
+  for (var i in rows)
   {
-    res.send("try again");
+	console.log('SQL matches: ' ,rows[i]);
+  }
+  if (rows[0] == null ) 
+  {
+	//res.send("try again", 400);
+	console.log('No matches - ACCESS DENIED.');
+	res.redirect('/login');
   }
   else 
   {
-	res.send("User is logged in");
-	console.log(queryString);
+	//res.send("User is logged in", 200);
+	console.log('ACCESS GRANTED - logged in.');
+	//console.log(sql);
   }
   });
 };
