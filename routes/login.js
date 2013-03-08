@@ -17,7 +17,7 @@ var connection = mysql.createConnection(
   }
   );
 
-var sql    = 'SELECT username, password FROM USERS WHERE username = ' + connection.escape(usernameForm) + 'AND password = ' + connection.escape(passwordForm);
+var sql    = 'SELECT users_username, users_password FROM USERS WHERE users_username = ' + connection.escape(usernameForm) + 'AND users_password = ' + connection.escape(passwordForm);
 
 
 connection.query(sql, function(err, rows, fields) {
