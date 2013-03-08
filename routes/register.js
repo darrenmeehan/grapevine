@@ -13,7 +13,7 @@ exports.RegisterUser = function(email,username,fullname,password,req,res){
     }
 );
 	
-	connection.query('INSERT INTO USERS(email, username, fullname, password) VALUES (?,?,?,?)', [email,username,fullname,password]);
+	connection.query('INSERT INTO USERS(users_email, users_username, users_fullname, users_password) VALUES (?,?,?,?)', [email,username,fullname,password]);
 	
 	console.log('connection.query should have run now.');
 	
