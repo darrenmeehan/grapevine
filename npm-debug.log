@@ -1,0 +1,61 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'passpost-local' ]
+2 info using npm@1.2.14
+3 info using node@v0.10.0
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 verbose read json C:\Users\Darren Meehan\Dropbox\SE Project\Project-Repo\package.json
+6 warn package.json application-name@0.0.1 No README.md file found!
+7 verbose from cache C:\Users\Darren Meehan\Dropbox\SE Project\Project-Repo\package.json
+8 verbose readDependencies using package.json deps
+9 verbose cache add [ 'passpost-local', null ]
+10 verbose cache add name=undefined spec="passpost-local" args=["passpost-local",null]
+11 verbose parsed url { protocol: null,
+11 verbose parsed url   slashes: null,
+11 verbose parsed url   auth: null,
+11 verbose parsed url   host: null,
+11 verbose parsed url   port: null,
+11 verbose parsed url   hostname: null,
+11 verbose parsed url   hash: null,
+11 verbose parsed url   search: null,
+11 verbose parsed url   query: null,
+11 verbose parsed url   pathname: 'passpost-local',
+11 verbose parsed url   path: 'passpost-local',
+11 verbose parsed url   href: 'passpost-local' }
+12 silly lockFile 0f1c2248-passpost-local passpost-local
+13 verbose lock passpost-local C:\Users\Darren Meehan\AppData\Roaming\npm-cache\0f1c2248-passpost-local.lock
+14 silly lockFile 0f1c2248-passpost-local passpost-local
+15 silly lockFile 0f1c2248-passpost-local passpost-local
+16 verbose addNamed [ 'passpost-local', '' ]
+17 verbose addNamed [ null, '' ]
+18 silly lockFile 157c7289-passpost-local passpost-local@
+19 verbose lock passpost-local@ C:\Users\Darren Meehan\AppData\Roaming\npm-cache\157c7289-passpost-local.lock
+20 silly addNameRange { name: 'passpost-local', range: '', hasData: false }
+21 verbose url raw passpost-local
+22 verbose url resolving [ 'https://registry.npmjs.org/', './passpost-local' ]
+23 verbose url resolved https://registry.npmjs.org/passpost-local
+24 info trying registry request attempt 1 at 13:16:52
+25 http GET https://registry.npmjs.org/passpost-local
+26 http 404 https://registry.npmjs.org/passpost-local
+27 silly registry.get cb [ 404,
+27 silly registry.get   { server: 'CouchDB/1.2.1 (Erlang OTP/R15B03)',
+27 silly registry.get     date: 'Tue, 12 Mar 2013 13:17:05 GMT',
+27 silly registry.get     'content-type': 'application/json',
+27 silly registry.get     'content-length': '52',
+27 silly registry.get     'cache-control': 'must-revalidate' } ]
+28 silly lockFile 157c7289-passpost-local passpost-local@
+29 silly lockFile 157c7289-passpost-local passpost-local@
+30 error 404 'passpost-local' is not in the npm registry.
+30 error 404 You should bug the author to publish it
+30 error 404
+30 error 404 Note that you can also install from a
+30 error 404 tarball, folder, or http url, or git url.
+31 error System Windows_NT 6.1.7601
+32 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "passpost-local"
+33 error cwd C:\Users\Darren Meehan\Dropbox\SE Project\Project-Repo
+34 error node -v v0.10.0
+35 error npm -v 1.2.14
+36 error code E404
+37 verbose exit [ 1, true ]

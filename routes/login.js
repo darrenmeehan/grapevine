@@ -1,12 +1,12 @@
 exports.LoginUser = function (usernameForm, passwordForm, req, res) 
 {
 
-var express = require('express')
-  , http = require('http')
-  , util = require('util')
-  , path = require('path')
-  , mysql = require('mysql')
-  , fs = require('fs');
+var express = require('express');
+var http = require('http');
+var util = require('util');
+var path = require('path');
+var mysql = require('mysql');
+var fs = require('fs');
 
 var connection = mysql.createConnection(
   {
@@ -18,7 +18,6 @@ var connection = mysql.createConnection(
   );
 
 var sql    = 'SELECT users_username, users_password FROM USERS WHERE users_username = ' + connection.escape(usernameForm) + 'AND users_password = ' + connection.escape(passwordForm);
-
 
 connection.query(sql, function(err, rows, fields) {
   if (err) throw err;

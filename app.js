@@ -3,24 +3,12 @@
  * Module dependencies.
  */
 
-var express = require('express')
-  //, routes = require('./routes')
- // , user = require('./routes/user')
-  , http = require('http')
-  , path = require('path')
-  , register = require('./routes/register')
- // , list = require('./routes/list')
-  , mysql = require('mysql')
-  , fs = require('fs')
-  , passport = require('passport')
-  , LocalStrategy = require('passport-local')
-  , Sequelize = require("sequelize"); //to be used for mySQL db http://www.sequelizejs.com/
-
-
-var sequelize = new Sequelize('mydb1155', 'mydb1155', 'mydb11555', {
-  host: "danu2.it.nuigalway.ie",
- // port: 12345
-})
+var express = require('express');
+var http = require('http');
+var path = require('path');
+var register = require('./routes/register');
+var mysql = require('mysql');
+var fs = require('fs');
 
 var app = express();
 
@@ -31,13 +19,10 @@ app.configure(function(){
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
-  
   app.use(express.methodOverride());
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
-  app.use(passport.initialize());
   app.use(app.router);
-  app.use(require('less-middleware')({ src: __dirname + '/public' }));
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
@@ -57,7 +42,6 @@ app.get('/', function (req, res) {
   res.end(submitForm);
 });
 
-//app.get('/list', list.listUsers);
 app.get('/list', function (req, res) {
   console.log("Calling /list");
   Evt_list.ListAllUsers(req, res); 
@@ -79,14 +63,6 @@ app.post('/register', express.bodyParser(), function(req, res) {
     console.log("Calling /register", req.body.email, ":", req.body.username, ":", req.body.fullname, ":", req.body.password);
     Evt_register.RegisterUser(req.body.email, req.body.username, req.body.fullname, req.body.password, req, res );
 });
-
-
-/* old login, keeping while I test out new one 
-app.post('/login', express.bodyParser(), function(req, res) {
-    console.log("Calling /login", req.body.username, ":" ,req.body.password);
-    passport.use(req.body.username, req.body.password, req, res );
-});
-*/
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
