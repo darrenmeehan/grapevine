@@ -1,4 +1,4 @@
-exports.LoginUser = function (usernameForm, passwordForm, res, req) 
+exports.LoginUser = function (usernameForm, passwordForm, req, res) 
 {
 
 var express = require('express')
