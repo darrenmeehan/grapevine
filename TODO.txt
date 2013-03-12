@@ -1,17 +1,19 @@
 TODO
 
 HIGH PRIORITY
-- Build sharing functionality - Connor
-- Build following functionality
-- allow users to enter username or email when loggin in
+- Allow users to enter username or email when loggin in
 - Do not allow user to register duplicate accounts with the same email address or username.
-
-
+- Sharing functionality
+- Following functionality
 
 MEDMIUM PRIORITY
+- Profiles, display users posts, and who they follow
 - Tidy up code
 - Website design
 - Password reset
 - Ensure user is only allowed to enter a specified list of acceptable characters when both registering and logging in.
 
 LOW PRIORITY
+- Polishing of the site
+- add image upload support
+
