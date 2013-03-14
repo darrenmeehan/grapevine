@@ -1,20 +1,9 @@
-
-/**
- * Module dependencies.
- */
-
 var express = require('express')
-  //, routes = require('./routes')
- // , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
   , register = require('./routes/register')
- // , list = require('./routes/list')
   , mysql = require('mysql')
   , fs = require('fs');
-  //, passport = require('passport')
-  //, LocalStrategy = require('passport-local')
-//, Sequelize = require("sequelize"); //to be used for mySQL db http://www.sequelizejs.com/
 
 var app = express();
 
@@ -25,12 +14,10 @@ app.configure(function(){
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
-  
   app.use(express.methodOverride());
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
   app.use(app.router);
- // app.use(require('less-middleware')({ src: __dirname + '/public' }));
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
@@ -41,7 +28,10 @@ app.configure('development', function(){
 var Evt_list        = require('./routes/list');
 var Evt_login       = require('./routes/login');
 var Evt_register    = require('./routes/register');
-var Evt_post    = require('./routes/post');
+var Evt_post        = require('./routes/post');
+var db              = require('./routes/DBManager.js');
+var pageW = require('./routes/PageWriter.js');
+
 
 app.get('/', function (req, res) {
   console.log("Calling Root"); 
@@ -83,6 +73,50 @@ app.post('/register', express.bodyParser(), function(req, res) {
     console.log("Calling /register", req.body.email, ":", req.body.username, ":", req.body.fullname, ":", req.body.password);
     Evt_register.RegisterUser(req.body.email, req.body.username, req.body.fullname, req.body.password, req, res );
 });
+
+//----------------------------------------------------------------------
+// new function that calls the database and creates dynamic content
+app.get('/dbtest', function (req, res) {
+  console.log("Calling Test for database access"); 
+  var dbm  = db.createDBManager();     // create a DBManager object
+  var pw   = pageW.createPageWriter(); // create a PageWriter object
+
+  params = ["p1", "p2"]; //dummy params for the moment, these can be used later
+
+  // note that because mysql calls are asynchronous we
+  // need the function delaration inside the function call as it
+  // acts as a callback.
+  dbm.getTimestampData(params, function(results) {
+        // when the sql calls are complete, this code gets called
+        // see the line  callback(results); in DBManager
+        pw.addHeader();
+        pw.addMenu();    
+        pw.addContent(results);
+        pw.addRealTime();
+        pw.addFooter();
+
+        res.writeHead(200, {'Content-type': 'text/html'});
+        res.end(pw.toString());  
+  });
+});
+
+
+//----------------------------------------------------------------------
+// same as previous example
+app.get('/pagewriter', function (req, res) {
+  console.log("Calling Test for PageWriter"); 
+  var pw = pageW.createPageWriter();
+
+  pw.addHeader();
+  pw.addMenu();
+  pw.addContent();
+  pw.addRealTime();
+  pw.addFooter();
+
+  res.writeHead(200, {'Content-type': 'text/html'});
+  res.end(pw.toString());
+});
+
 
 
 /* old login, keeping while I test out new one 

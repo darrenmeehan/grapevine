@@ -18,6 +18,4 @@ exports.RegisterUser = function(email,username,fullname,password,req,res){
 	console.log('connection.query should have run now.');
 
 	connection.end();
-
-
 };
