@@ -11,10 +11,16 @@ var express = require('express')
   , register = require('./routes/register')
  // , list = require('./routes/list')
   , mysql = require('mysql')
-  , fs = require('fs');
-  //, passport = require('passport')
-  //, LocalStrategy = require('passport-local')
-//, Sequelize = require("sequelize"); //to be used for mySQL db http://www.sequelizejs.com/
+  , fs = require('fs')
+  , passport = require('passport')
+  , LocalStrategy = require('passport-local')
+  , Sequelize = require("sequelize"); //to be used for mySQL db http://www.sequelizejs.com/
+
+
+var sequelize = new Sequelize('mydb1155', 'mydb1155', 'mydb11555', {
+  host: "danu2.it.nuigalway.ie",
+ // port: 12345
+})
 
 var app = express();
 
@@ -29,8 +35,9 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
+  app.use(passport.initialize());
   app.use(app.router);
- // app.use(require('less-middleware')({ src: __dirname + '/public' }));
+  app.use(require('less-middleware')({ src: __dirname + '/public' }));
   app.use(express.static(path.join(__dirname, 'public')));
 });
 

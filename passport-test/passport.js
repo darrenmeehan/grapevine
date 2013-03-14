@@ -1,34 +1,15 @@
-//based on code from https://github.com/jaredhanson/passport-local/blob/master/examples/login/app.js
-exports.LoginUser = function (usernameForm, passwordForm, req, res) 
-{
-
-var express = require('express')
-  , http = require('http')
-  , util = require('util')
-  , path = require('path')
-  , mysql = require('mysql')
-  , fs = require('fs');
-
-var connection = mysql.createConnection(
-  {
-  host     : 'danu2.it.nuigalway.ie',
-  user     : 'mydb1155',
-  password : 'mydb11555',
-  database : 'mydb1155',
-  }
-  );
-
-var sql    = 'SELECT users_username, users_password FROM USERS WHERE users_username = ' + connection.escape(usernameForm) + 'AND users_password = ' + connection.escape(passwordForm);
-
-connection.query(sql, function(err, rows, fields) {
-  if (err) throw err;
-
 var flash = require('connect-flash')
   , express = require('express')
   , passport = require('passport')
   , util = require('util')
   , LocalStrategy = require('passport-local').Strategy;
- 
+  
+
+var users = [
+    { id: 1, username: 'bob', password: 'secret', email: 'bob@example.com' }
+  , { id: 2, username: 'joe', password: 'birthday', email: 'joe@example.com' }
+];
+
 function findById(id, fn) {
   var idx = id - 1;
   if (users[idx]) {
@@ -47,7 +28,6 @@ function findByUsername(username, fn) {
   }
   return fn(null, null);
 }
-
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -70,7 +50,7 @@ passport.deserializeUser(function(id, done) {
 //   credentials (in this case, a username and password), and invoke a callback
 //   with a user object.  In the real world, this would query a database;
 //   however, in this example we are using a baked-in set of users.
-/*passport.use(new LocalStrategy(
+passport.use(new LocalStrategy(
   function(username, password, done) {
     // asynchronous verification, for effect...
     process.nextTick(function () {
@@ -85,23 +65,45 @@ passport.deserializeUser(function(id, done) {
         if (user.password != password) { return done(null, false, { message: 'Invalid password' }); }
         return done(null, user);
       })
-	  
-	  
     });
   }
-)); */
+));
 
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    connection.query(sql, function(err, rows, fields) {
-      if (err) throw err;
-	//may need work here?
-	 
-      return done(null, userObject);
-    })
-  }
-}
+
+
+var app = express();
+
+// configure Express
+app.configure(function() {
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'ejs');
+  app.use(express.logger());
+  app.use(express.cookieParser());
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(express.session({ secret: 'keyboard cat' }));
+  // Initialize Passport!  Also use passport.session() middleware, to support
+  // persistent login sessions (recommended).
+  app.use(flash());
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(app.router);
+  app.use(express.static(__dirname + '/../../public'));
+});
+
+
+app.get('/', function(req, res){
+  res.render('index', { user: req.user });
+});
+
+app.get('/account', ensureAuthenticated, function(req, res){
+  res.render('account', { user: req.user });
+});
+
+app.get('/login', function(req, res){
+  res.render('login', { user: req.user, message: req.flash('error') });
+});
 
 // POST /login
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -140,7 +142,7 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.listen(8777);
+app.listen(3000);
 
 
 // Simple route middleware to ensure user is authenticated.
@@ -152,8 +154,3 @@ function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
   res.redirect('/login')
 }
-
-
-
-  });
-};
