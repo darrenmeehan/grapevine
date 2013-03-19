@@ -1,5 +1,8 @@
-exports.LoginUser = function (usernameForm, passwordForm, req, res) 
-{
+var db = require('./DBManager.js');
+var pw = require('./PageWriter.js');
+
+dbm  = db.createDBManager();
+pwtr = pw.createPageWriter();
 
 var express = require('express')
   , http = require('http')
@@ -8,29 +11,13 @@ var express = require('express')
   , mysql = require('mysql')
   , fs = require('fs');
 
-var connection = mysql.createConnection(
-  {
-  host     : 'danu2.it.nuigalway.ie',
-  user     : 'mydb1155',
-  password : 'mydb11555',
-  database : 'mydb1155',
-  }
-  );
+result = dbm.LoginUser(usernameForm,passwordForm, function(results) {
+    console.log('User queried...');
+    /*for (var i in results) {
+        console.log(results[i].users_ID, results[i].users_email, results[i].users_timestamp);
+    }*/
 
-var sql    = 'SELECT users_username, users_password FROM USERS WHERE users_username = ' + connection.escape(usernameForm) + 'AND users_password = ' + connection.escape(passwordForm);
-
-
-connection.query(sql, function(err, rows, fields) {
-  if (err) throw err;
-
-  console.log('rows[0] output: ' ,rows[0]);
-  console.log('rows output :', rows);
-  //if (rows[0] == null ) 
-  for (var i in rows)
-  {
-	console.log('SQL matches: ' ,rows[i]);
-  }
-  if (rows[0] == null ) 
+  if (results[0] == null ) 
   {
 	//res.send("try again", 400);
 	console.log('No matches - ACCESS DENIED.');
@@ -42,6 +29,5 @@ connection.query(sql, function(err, rows, fields) {
 	console.log('ACCESS GRANTED - logged in.');
 	res.redirect('/post');
 	//console.log(sql);
-  }
-  });
-};
+  }	
+});

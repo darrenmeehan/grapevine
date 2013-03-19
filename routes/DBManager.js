@@ -40,13 +40,13 @@ DBManager.prototype.getTimestampData = function (params, callback)
 }
 
 // Function for loggin user in
-DBManager.prototype.LoginUser = function(params, callback)
+DBManager.prototype.LoginUser = function(usernameForm, passwordForm, callback)
 {
   var result;
   
-  this.connection.conntect();
+  this.connection.connect();
   
-  var queryString    = 'SELECT users_username, users_password FROM USERS WHERE users_username = ' + connection.escape(usernameForm) + 'AND users_password = ' + connection.escape(passwordForm);
+  var queryString    = 'SELECT users_username, users_password FROM USERS WHERE users_username = ' + this.connection.escape(usernameForm) + 'AND users_password = ' + this.connection.escape(passwordForm);
 
   this.connection.query(queryString, function(err, results, fields) {
     if (err) throw err;

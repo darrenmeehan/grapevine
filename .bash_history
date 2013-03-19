@@ -1,35 +1,4 @@
 node app
-node app
-node app
-ls
-node register
-logout
-node app
-node app
-Error: ER_WRONG_VALUE_COUNT_ON_ROW: Column count doesn't match value count at row 1
-    at Query.Sequence._packetToError (/usr/lib/node_modules/mysql/lib/protocol/sequences/Sequence.js:32:14)
-    at Query.ErrorPacket (/usr/lib/node_modules/mysql/lib/protocol/sequences/Query.js:78:18)
-    at Protocol._parsePacket (/usr/lib/node_modules/mysql/lib/protocol/Protocol.js:156:24)
-    at Parser.write (/usr/lib/node_modules/mysql/lib/protocol/Parser.js:60:12)
-    at Protocol.write (/usr/lib/node_modules/mysql/lib/protocol/Protocol.js:31:16)
-    at Socket.ondata (stream.js:38:26)
-    at Socket.EventEmitter.emit (events.js:93:17)
-    at TCP.onread (net.js:396:14)
-    at process._makeCallback (node.js:248:20)
-    --------------------
-    at Query.Sequence (/usr/lib/node_modules/mysql/lib/protocol/sequences/Sequence.js:15:21)
-    at new Query (/usr/lib/node_modules/mysql/lib/protocol/sequences/Query.js:11:12)
-    at Protocol.query (/usr/lib/node_modules/mysql/lib/protocol/Protocol.js:40:24)
-    at Connection.query (/usr/lib/node_modules/mysql/lib/Connection.js:92:25)
-    at Object.exports.RegisterUser (/home/danu2_md2/routes/register.js:16:13)
-    at /home/danu2_md2/app.js:44:14
-    at callbacks (/home/danu2_md2/node_modules/express/lib/router/index.js:161:37)
-    at multipart (/home/danu2_md2/node_modules/express/node_modules/connect/lib/middleware/multipart.js:60:27)
-    at /home/danu2_md2/node_modules/express/node_modules/connect/lib/middleware/bodyParser.js:57:9
-    at urlencoded (/home/danu2_md2/node_modules/express/node_modules/connect/lib/middleware/urlencoded.js:48:27)
-
-ls -a
-node app
 node register
 logout
 node app
@@ -497,4 +466,35 @@ node app
 node app
 node app
 logout
+logout
+node app
+node app
+node app
+node app
+node app
+node app
+node app
+node app
+node app
+node app
+node app
+node app
+node app
+node app
+node app
+node app
+node app
+node app
+node app
+node app
+node app
+/usr/lib/node_modules/mysql/lib/protocol/SqlString.js:33
+  val = val.replace(/[\0\n\r\b\t\\\'\"\x1a]/g, function(s) {
+/usr/lib/node_modules/mysql/lib/protocol/SqlString.js:33
+node app
+node app
+node app
+node app
+node app
+node app.js
 logout

@@ -36,7 +36,7 @@ var pageW = require('./routes/PageWriter.js');
 app.get('/', function (req, res) {
   console.log("Calling Root"); 
   var submitForm = fs.readFileSync('form.html'); 
-  //res.writeHead(200, {'Content-type': 'text/html'});
+  res.writeHead(200, {'Content-type': 'text/html'});
   res.end(submitForm);
 });
 
@@ -48,11 +48,39 @@ app.get('/list', function (req, res) {
 app.get('/login', function (req, res) {
   console.log("Calling /login"); 
   var submitForm = fs.readFileSync('login.html'); 
-  //res.writeHead(200, {'Content-type': 'text/html'});
+  res.writeHead(200, {'Content-type': 'text/html'});
   res.end(submitForm);
 });
 
-app.post('/login', express.bodyParser(), function(req, res) {
+
+//---------------------------------------------------------
+app.get('/logon', function (req, res) {
+  console.log("Calling /logon");
+
+  if (isLoggedOn(req)) 
+  {
+    console.log("Welcome Back...");    
+    res.send('Welcome back!');
+  }
+  else 
+  {
+	 var submitForm = fs.readFileSync('login.html'); 
+  res.writeHead(200, {'Content-type': 'text/html'});
+  res.end(submitForm);
+    console.log("Welcome!"); 
+    req.session.name      = 'Logon Name';     
+    req.session.logged    = true;
+    req.session.pageloads = 1; 
+    res.send('Welcome!'); 
+    req.session.history   = [];
+
+  } 
+
+  updateStats(req, '/logon'); 
+});
+
+
+app.post('/login', express.bodyParser(), function( usernameForm, passwordForm, req, res) {
     console.log("Calling /login", req.body.usernameForm, ":", req.body.passwordForm);
     Evt_login.LoginUser(req.body.usernameForm, req.body.passwordForm, req, res );
 });
@@ -117,14 +145,6 @@ app.get('/pagewriter', function (req, res) {
   res.end(pw.toString());
 });
 
-
-
-/* old login, keeping while I test out new one 
-app.post('/login', express.bodyParser(), function(req, res) {
-    console.log("Calling /login", req.body.username, ":" ,req.body.password);
-    passport.use(req.body.username, req.body.password, req, res );
-});
-*/
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

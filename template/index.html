@@ -2,45 +2,51 @@
 <html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article">
 <head>
 
+	<title>Grapevine - Microblogging site</title>
+
 	<link rel="stylesheet" href="style.css">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 
-<body class="single">
-  <a id="notification" href="">
-    <p>Welcome to The Grapevine, this is a project by students from Computer Science & I.T in NUIG.</p>
-  </a>
-
-  <!--http://astheria.com/about-->
-
-	<div id="wrapper">
-		<div id="masthead">
-			<br>
-			<span id="logo"><a title="Back to the home page" href="">The Grapevine</a></span>
+<body>
+  
+  	
+		<nav id="nav">
 			
-			<ol id="nav">
-	    		<li><a href="/about/">About</a></li>
-	    		<li class="last"><a href="">Contact</a></li>
-	    	</ol>
-	    	
-	    </div>
+			<span id="logo"><a title="Back to the home page" href="">GRAPEVINE</a></span>
+			
+	    	<li><a href="/about/">About</a></li>
+	    	<li class="last"><a href="">Contact</a></li>
+	
+		</nav>
 		
-		<div id="main">
-				<div id="add-post">
+		<div id="add-post">
 				
 					  <form class="post " action="" method="post">
 						<textarea id="post_content" rows="5" cols="30" name="post_content" class="empty">What's happening?</textarea>
 						<button class="submit" type="submit"><span>Post</span></button>
 					  </form>
 				
-				</div>
-				
-				
+		</div>
+		
+	<div id="wrapper" class="column">
+	
+	<div id="main">
+	
+				<h3 class="date">
+					<span class="desktop">Thursday, March 14th 2013</span>
+				</h3>
+     
 				<div id="content">
 				
 					<div class="post">
 						
-						<a href=""><img class="avatar js-action-profile-avatar" src="https://twimg0-a.akamaihd.net/profile_images/2937567784/7d1eb545d6608cccfdda23057d393608_normal.jpeg" alt="Courtney"></a>
+						<div class="user">
+							<a href=""><img class="avatar js-action-profile-avatar" src="https://twimg0-a.akamaihd.net/profile_images/2937567784/7d1eb545d6608cccfdda23057d393608_normal.jpeg" alt="Courtney"></a>
+							<a href="">Darren Meehan</a>
+						</div>
 						
 						<p class="text">This is a sample post, nothing special. It's being used for the design and is nearly the length of a tweet. Seems long enough if you ask me!</p>
 					
@@ -59,48 +65,29 @@
 						<p class="text">This is a sample post, nothing special. It's being used for the design and is nearly the length of a tweet. Seems long enough if you ask me!</p>
 					
 					</div>
-
-    
-
-				
+					
 				</div>
-		
-		
+				
 		</div>
-		
-	<div id="footer" style="display: block;">
-  <div class="inner">
-    
-    <div id="footer_feedback">
 
-      <form class="feedback " action="" method="post">
-        <textarea id="site_feedback" rows="5" cols="30" name="site_feedback" class="empty">Please enter some feedback...</textarea>
-        <button class="submit" type="submit"><span>Send</span></button>
-      </form>
-
-      <div class="feedback_text">
-        <h2>We would love some feedback</h2>
-        <p>We've been working hard on this project, we want to make it better!</p>
-      </div>
-
-    </div>
-
-    <div id="footer_content">
-
-        <h5>Grapevine</h5>
-        <p>
-         The Grapevine is a microblogging site built using node.js
-        </p>
-
-    </div>
-
-  </div>
-</div>	
-		
-		
+	</div>	
 	
+	
+	<footer id="footer">
+     
+			<div>
+				
+				<form class="feedback " action="" method="post">
+					<textarea id="site_feedback" rows="5" cols="30" name="site_feedback" class="empty">Please enter some feedback...</textarea>
+					<button class="submit" type="submit"><span>Send</span></button>
+				</form>
 
-	</div>
+				<h2>We would love some feedback</h2>
+				<p>We've been working hard on this project, we want to make it better!</p>
+
+				</div>
+	</footer>	
+
 
 </body>
 
