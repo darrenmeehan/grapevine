@@ -1,16 +1,19 @@
 TODO
 
 HIGH PRIORITY
-- Allow users to enter username or email when loggin in
-- Do not allow user to register duplicate accounts with the same email address or username.
+- Do not allow user to register duplicate accounts with the same email address or username, stop app crashing when this happens
+- Finish new login setup, fix current errors
 - Sharing functionality
 - Following functionality
+- Some form of simple profiles
 
 MEDMIUM PRIORITY
+- Allow users to enter username or email when loggin in
 - Profiles, display users posts, and who they follow
 - Tidy up code
 - Website design
 - Password reset
+- Encryt passwords
 - Ensure user is only allowed to enter a specified list of acceptable characters when both registering and logging in.
 
 LOW PRIORITY
